@@ -29,14 +29,18 @@ class Woocommerce_Pigeon_Gateway {
 	 */
 	public function add_payment_gateway() {
 		if ( ! in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ), true ) ) {
+			// Show warning.
 			add_action( 'admin_notices', array( $this, 'show_woocommerce_gateway_warning' ) );
 
 			return;
 		}
 
 		/**
-		 * Add our gateway class here.
+		 * Initialize gateway.
 		 */
+		require plugin_dir_path( __FILE__ ) . 'class-wc-gateway-pigeon.php';
+
+		new WC_Gateway_Pigeon();
 	}
 
 	/**
