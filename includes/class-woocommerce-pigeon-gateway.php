@@ -25,7 +25,7 @@ class Woocommerce_Pigeon_Gateway {
 	/**
 	 * Check if WooCommerce is active and add payment gateway.
 	 *
-	 * @return void
+	 * @return WC_Gateway_Pigeon
 	 */
 	public function add_payment_gateway() {
 		if ( ! in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ), true ) ) {
@@ -36,11 +36,13 @@ class Woocommerce_Pigeon_Gateway {
 		}
 
 		/**
-		 * Initialize gateway.
+		 * Initialize payent gateway.
 		 */
-		require plugin_dir_path( __FILE__ ) . 'class-wc-gateway-pigeon.php';
+		require_once plugin_dir_path( __FILE__ ) . 'class-wc-gateway-pigeon.php';
 
-		new WC_Gateway_Pigeon();
+		$payment_gateway = new WC_Gateway_Pigeon();
+
+		return $payment_gateway;
 	}
 
 	/**

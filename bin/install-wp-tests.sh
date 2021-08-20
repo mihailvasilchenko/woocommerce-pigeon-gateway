@@ -93,6 +93,8 @@ install_wp() {
 	fi
 
 	download https://raw.github.com/markoheijnen/wp-mysqli/master/db.php $WP_CORE_DIR/wp-content/db.php
+	download https://downloads.wordpress.org/plugin/woocommerce.5.6.0.zip $TMPDIR/woocommerce.5.6.0.zip
+	unzip $TMPDIR/woocommerce.5.6.0.zip -d $WP_CORE_DIR/wp-content/plugins
 }
 
 install_test_suite() {
