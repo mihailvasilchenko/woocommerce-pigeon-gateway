@@ -1,11 +1,16 @@
 <?php
+
 /**
- * Class Woocommerce_Pigeon_Gateway_Test
+ * Class WoocommercePigeonGatewayTest
  *
  * @package WoocommercePigeonGatewayTest
  */
 
-class Woocommerce_Pigeon_Gateway_Test extends WP_UnitTestCase
+namespace WooCommercePigeonGatewayTest;
+
+use WP_UnitTestCase;
+
+class WoocommercePigeonGatewayTest extends WP_UnitTestCase
 {
     /**
      * Initialize our class.
@@ -16,7 +21,7 @@ class Woocommerce_Pigeon_Gateway_Test extends WP_UnitTestCase
     {
         parent::setUp();
 
-        $this->class_instance = new Woocommerce_Pigeon_Gateway();
+        $this->classInstance = new \WooCommercePigeonGateway\WooCommercePigeonGateway();
     }
 
     /**
@@ -24,12 +29,12 @@ class Woocommerce_Pigeon_Gateway_Test extends WP_UnitTestCase
      *
      * @return void
      */
-    public function test_payment_gateway_not_added_if_woocoommerce_not_installed()
+    public function testAddPaymentGateway()
     {
-        $payment_gateway = $this->class_instance->add_payment_gateway();
+        $paymentGateway = $this->classInstance->addPaymentGateway();
         $expected = false;
 
-        $this->assertEquals($expected, $payment_gateway);
+        $this->assertEquals($expected, $paymentGateway);
     }
 
     /**
@@ -37,10 +42,12 @@ class Woocommerce_Pigeon_Gateway_Test extends WP_UnitTestCase
      *
      * @return void
      */
-    public function test_show_woocommerce_gateway_warning()
-    {   
+    public function testShowWoocommerceGatewayWarning()
+    {
         ob_start();
-        $this->class_instance->show_woocommerce_gateway_warning();
+
+        $this->classInstance->showWoocommerceGatewayWarning();
+        
         $warning = ob_get_clean();
         $expected = 'error';
 

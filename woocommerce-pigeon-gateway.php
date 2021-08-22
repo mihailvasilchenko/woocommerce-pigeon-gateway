@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name: WooCommerce Pigeon Gateway
  * Description: An extension which adds a simple WooCommerce payment gateway.
@@ -18,26 +19,16 @@
  * @package WooCommercePigeonGateway
  */
 
-/**
- * Check if accessed directly
- */
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+namespace WooCommercePigeonGateway;
 
 /**
- * The core plugin class that is used to define hooks.
+ * Add Composer's PSR-4 autoload.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-pigeon-gateway.php';
+require_once dirname(__FILE__) . "/vendor/autoload.php";
 
 /**
  * Begins execution of the plugin.
- *
- * @since 1.0.0
  */
-function run_woocommerce_pigeon_gateway() {
-	$plugin = new Woocommerce_Pigeon_Gateway();
-	$plugin->run();
-}
+$plugin = new WooCommercePigeonGateway();
 
-run_woocommerce_pigeon_gateway();
+$plugin->run();
